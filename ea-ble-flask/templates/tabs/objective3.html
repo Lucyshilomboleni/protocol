@@ -1,0 +1,34 @@
+{% from "tabs/_start.html" import start_inputs %}
+<p class="label">Objective 3</p>
+<h1>Protected energy reserve</h1>
+<p class="lead">The bottom part of the energy store is fenced off, like emergency fuel. Normal modes may not use it;
+  it keeps the key findable and lets the tag shut down safely instead of browning out.</p>
+
+<h2>Energy zones</h2>
+<table>
+  <tr><th>Zone</th><th>Stored energy</th><th>Voltage</th></tr>
+  {% for z in info.zones %}
+  <tr><td>{{ z.zone }}</td><td>{{ z.charge }}</td><td>{{ z.voltage }}</td></tr>
+  {% endfor %}
+</table>
+
+<h2>Reserve mechanisms</h2>
+<table>
+  <tr><th>Mechanism</th><th>What it does</th></tr>
+  <tr><td><b>Guard</b></td><td>Skips any packet that would take the energy below the reserve.</td></tr>
+  <tr><td><b>Survival beacon</b></td><td>Inside the reserve, sends one full-power packet every 5 to 15 seconds.</td></tr>
+  <tr><td><b>Motion burst</b></td><td>When the keys are picked up, sends 6 quick packets.</td></tr>
+  <tr><td><b>Hibernate</b></td><td>Below 5 %, switches the radio off but keeps memory (no costly restart).</td></tr>
+</table>
+
+<h2>Drawer test: keys lying still with no movement</h2>
+<div class="box">
+  {{ start_inputs('r', hours=24, soc=60, seed=11) }}
+  <div class="controls"><button id="r-run">Run drawer test</button><span class="error" id="r-error"></span></div>
+  <div id="r-results"></div>
+</div>
+
+<div class="pager">
+  <button class="link-btn" data-go="objective2">← Objective 2: Energy-aware protocol</button>
+  <button class="link-btn" data-go="objective4">Objective 4: Comparison →</button>
+</div>

@@ -1,0 +1,199 @@
+/* ==========================================================
+   EA-BLE Simulator — one style sheet for the whole Flask app
+   Simple, clean, light theme with one accent colour.
+   ========================================================== */
+
+:root {
+  --text: #1f2937;        /* main text */
+  --muted: #6b7280;       /* secondary text */
+  --line: #e5e7eb;        /* borders */
+  --soft: #f6f8fa;        /* light panels */
+  --accent: #0f766e;      /* teal: proposed protocol, links, buttons */
+  --static: #c2410c;      /* orange: static baseline */
+  --bad: #b91c1c;         /* red: brown-outs */
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: var(--text);
+  background: #ffffff;
+  line-height: 1.6;
+}
+
+/* ---------- top bar with tab buttons ---------- */
+header {
+  border-bottom: 1px solid var(--line);
+  background: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.bar {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.brand { font-weight: 700; margin-right: auto; }
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+.tab {
+  background: #ffffff;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 7px 14px;
+  font-size: 15px;
+}
+.tab:hover { color: var(--text); border-color: var(--accent); opacity: 1; }
+.tab.active { background: var(--accent); color: #ffffff; border-color: var(--accent); }
+
+/* only the active tab panel is visible */
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* ---------- page content ---------- */
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 32px 24px 48px;
+}
+h1 { font-size: 30px; margin: 0 0 8px; }
+h2 { font-size: 20px; margin: 32px 0 12px; }
+.lead { color: var(--muted); font-size: 17px; margin: 0 0 24px; }
+.label { color: var(--accent); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: .06em; }
+
+.box {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 16px 0;
+}
+.box.soft { background: var(--soft); }
+
+/* ---------- objective links on the home page ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.grid .card {
+  display: flex;                 /* buttons centre content by default;   */
+  flex-direction: column;        /* this keeps every card's text at the top */
+  justify-content: flex-start;
+  align-items: flex-start;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 18px 20px;
+  color: var(--text);
+  background: #ffffff;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+.grid .card:hover { border-color: var(--accent); }
+.grid .card b { display: block; font-size: 17px; margin: 4px 0; }
+.grid .card span { color: var(--muted); font-size: 15px; }
+
+/* ---------- forms and buttons ---------- */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 16px;
+}
+.controls label { display: flex; flex-direction: column; font-size: 14px; color: var(--muted); }
+input, select {
+  margin-top: 4px;
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-size: 15px;
+  min-width: 140px;
+}
+button {
+  background: var(--accent);
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 9px 18px;
+  font-size: 15px;
+  cursor: pointer;
+}
+button:hover { opacity: .9; }
+button:disabled { opacity: .5; cursor: wait; }
+
+/* ---------- result tables ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 15px;
+}
+th, td {
+  border-bottom: 1px solid var(--line);
+  padding: 9px 10px;
+  text-align: left;
+}
+th { background: var(--soft); font-weight: 600; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.proposed { color: var(--accent); font-weight: 600; }
+.static { color: var(--static); font-weight: 600; }
+.bad { color: var(--bad); font-weight: 600; }
+.note { color: var(--muted); font-size: 14px; }
+
+/* ---------- key figures (simple numbers, no charts) ---------- */
+.figures {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.figure {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+.figure .value { font-size: 26px; font-weight: 700; }
+.figure .what { color: var(--muted); font-size: 14px; }
+
+/* ---------- previous / next links ---------- */
+.pager {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+.link-btn {
+  background: none;
+  color: var(--accent);
+  padding: 0;
+  font-weight: 600;
+}
+
+footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  padding: 20px;
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 700px) {
+  .grid, .figures { grid-template-columns: 1fr; }
+}
+
+/* ---------- start values typed by the user ---------- */
+.start { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 14px 0; }
+.start label, .controls label { display: flex; flex-direction: column; gap: 4px; font-size: 14px; color: var(--muted); }
+.start input { min-width: 0; }
+.start input { width: 100%; box-sizing: border-box; }
+label small { color: #6b7280; font-size: 12px; }
+input.invalid { border-color: #c2410c; background: #fff7ed; }
+.error { color: #c2410c; font-size: 14px; align-self: center; }

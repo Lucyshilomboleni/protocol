@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+  <!-- Each tab is kept in its own template file under templates/tabs/ -->
+  <section class="panel active" id="home">{% include "tabs/home.html" %}</section>
+  <section class="panel" id="objective1">{% include "tabs/objective1.html" %}</section>
+  <section class="panel" id="objective2">{% include "tabs/objective2.html" %}</section>
+  <section class="panel" id="objective3">{% include "tabs/objective3.html" %}</section>
+  <section class="panel" id="objective4">{% include "tabs/objective4.html" %}</section>
+{% endblock %}

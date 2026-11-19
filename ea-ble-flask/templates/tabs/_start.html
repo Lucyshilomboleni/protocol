@@ -1,0 +1,22 @@
+{# Reusable block of start values the user types in before a run.
+   prefix  = id prefix for this tab (m, p, r, c)
+   The min/max limits match the server-side LIMITS in app.py. #}
+{% macro start_inputs(prefix, hours=12, max_hours=48, soc=50, seed=1000) %}
+<div class="start">
+  <label>Duration (h)
+    <input id="{{ prefix }}-hours" type="number" value="{{ hours }}" min="1" max="{{ max_hours }}" step="1" required>
+    <small>1 – {{ max_hours }}</small></label>
+  <label>Starting charge (%)
+    <input id="{{ prefix }}-soc" type="number" value="{{ soc }}" min="0" max="100" step="1" required>
+    <small>0 – 100</small></label>
+  <label>Capacitance (mF)
+    <input id="{{ prefix }}-cap" type="number" value="100" min="10" max="1000" step="10" required>
+    <small>10 – 1000</small></label>
+  <label>Phone distance (m)
+    <input id="{{ prefix }}-dist" type="number" value="10" min="1" max="50" step="1" required>
+    <small>1 – 50</small></label>
+  <label>Random seed
+    <input id="{{ prefix }}-seed" type="number" value="{{ seed }}" min="1" max="99999" step="1" required>
+    <small>same seed = same movement</small></label>
+</div>
+{% endmacro %}

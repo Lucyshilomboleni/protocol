@@ -1,0 +1,21 @@
+{% from "tabs/_start.html" import start_inputs %}
+<p class="label">Objective 4</p>
+<h1>Comparison with static BLE</h1>
+<p class="lead">Both protocols run in five usage scenarios on exactly the same harvested energy.
+  <span class="static">Static BLE</span> advertises every 250 ms; the <span class="proposed">proposed</span> protocol adapts.</p>
+
+<div class="box">
+  {{ start_inputs('c', hours=12, max_hours=12, soc=50, seed=1000) }}
+  <div class="controls">
+    <label>Runs per scenario <input id="c-runs" type="number" value="1" min="1" max="5" step="1" required><small>1 – 5</small></label>
+    <button id="c-run">Run comparison</button><span class="error" id="c-error"></span>
+  </div>
+  <p class="note">One run per scenario takes a few seconds; more runs give more reliable averages.</p>
+</div>
+<div id="c-summary"></div>
+<div id="c-results"></div>
+
+<div class="pager">
+  <button class="link-btn" data-go="objective3">← Objective 3: Energy reserve</button>
+  <button class="link-btn" data-go="home">Home →</button>
+</div>

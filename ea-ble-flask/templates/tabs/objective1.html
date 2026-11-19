@@ -1,0 +1,32 @@
+{% from "tabs/_start.html" import start_inputs %}
+<p class="label">Objective 1</p>
+<h1>Discrete-event simulation model</h1>
+<p class="lead">The simulator jumps from one event to the next (send an advert, check energy every second,
+  harvest changes, user activity changes) and calculates the energy exactly in between.</p>
+
+<h2>Model values</h2>
+<div class="figures">
+  <div class="figure"><div class="value">{{ info.usable_mJ }} mJ</div><div class="what">usable energy in the supercapacitor</div></div>
+  <div class="figure"><div class="value">{{ info.advert_uJ }} µJ</div><div class="what">energy per advert (0 dBm, 3 channels)</div></div>
+  <div class="figure"><div class="value">1.8 V</div><div class="what">brown-out voltage (restart at 2.4 V)</div></div>
+</div>
+
+<h2>Run a simulation</h2>
+<div class="box">
+  <div class="controls">
+    <label>Scenario
+      <select id="m-scenario">
+        {% for key, name in info.scenarios.items() %}<option value="{{ key }}" {% if key == 'office' %}selected{% endif %}>{{ name }}</option>{% endfor %}
+      </select>
+    </label>
+  </div>
+  {{ start_inputs('m', hours=12, soc=50, seed=7) }}
+  <div class="controls"><button id="m-run">Run simulation</button><span class="error" id="m-error"></span></div>
+  <p class="note">Both protocols receive exactly the same movement and harvested energy.</p>
+</div>
+<div id="m-results"></div>
+
+<div class="pager">
+  <button class="link-btn" data-go="home">← Home</button>
+  <button class="link-btn" data-go="objective2">Objective 2: Energy-aware protocol →</button>
+</div>
